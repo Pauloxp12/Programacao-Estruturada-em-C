@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    int numero_tentativas = 3 ;
+    int numero_player;
+    int numero_aleatorio;
+    int tentativa;
+    
+    
+    srand(time(0)); // Inicializa a semente do gerador de números aleatórios
+    numero_aleatorio = rand() % 6;
+    
+    printf("Descubra o numero aleatório! \n");
+    
+    for (tentativa = 1; tentativa <= numero_tentativas; tentativa++) {
+        printf("\nTentativa %d de %d\n", tentativa, numero_tentativas);
+        printf("Digite um numero: ");
+        scanf("%d", &numero_player);
+        
+        if (numero_player == numero_aleatorio) {
+            printf("Você acertou!");
+            break; // Encerra o loop se o jogador acertar
+        } else if (numero_player < numero_aleatorio){
+            printf("O número do jogo é maior!");
+        } else if (numero_player > numero_aleatorio){
+            printf("O número do jogo é menor!");
+        }
+    
+    }
+    
+    printf("\nO numero correto é: %i", numero_aleatorio);
+
+    return 0;
+}
