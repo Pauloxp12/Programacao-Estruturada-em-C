@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    int numero_tentativas;
+    int numero_player;
+    int numero_aleatorio;
+    int tentativa;
+    int dificuldade;
+
+    srand(time(0)); // Inicializa a semente do gerador de números aleatórios
+
+    printf("Selecione a dificuldade:\n");
+    printf("1 - Fácil, 3 tentativas, 30 numeros.\n");
+    printf("2 - Médio, 5 tentativas, 50 numeros.\n");
+    printf("3 - Difícil, 7 tentativas, 100 numeros.\n");
+    printf("Nivel de dificuldade: ");
+    scanf("%d", &dificuldade);
+
+    switch (dificuldade) {
+        case 1:
+            numero_tentativas = 2;
+            numero_aleatorio = rand() % 30;
+            break;
+        case 2:
+            numero_tentativas = 3;
+            numero_aleatorio = rand() % 50;
+            break;
+        case 3:
+            numero_tentativas = 4;
+            numero_aleatorio = rand() % 100;
+            break;
+        default:
+            printf("Opção inválida. Definindo dificuldade para Fácil.\n");
+            numero_tentativas = 2;
+    }
+    
+    printf("Descubra o número aleatório!\n");
+    
+    for (tentativa = 1; tentativa <= numero_tentativas; tentativa++) {
+        printf("\nTentativa %d de %d\n", tentativa, numero_tentativas);
+        printf("Digite um número: ");
+        scanf("%d", &numero_player);
+
+        if (numero_player == numero_aleatorio) {
+            printf("Você acertou!\n");
+            break; // Encerra o loop se o jogador acertar
+        } else if (numero_player < numero_aleatorio){
+            printf("O número do jogo é maior!\n");
+        } else if (numero_player > numero_aleatorio){
+            printf("O número do jogo é menor!\n");
+        }
+    }
+
+    printf("\nO número correto é: %d\n", numero_aleatorio);
+
+    return 0;
+}
